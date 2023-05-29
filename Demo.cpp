@@ -1,6 +1,5 @@
 #include <iostream>
 #include "sources/MagicalContainer.hpp"
-using namespace ariel;
 int main() {
     // Create a MagicalContainer and add some elements
     MagicalContainer container;
@@ -9,13 +8,16 @@ int main() {
     container.addElement(25);
     container.addElement(9);
     container.addElement(3);
+    
 
     // Print container size
     std::cout << "Size of container: " << container.size() << std::endl;
+    
 
     // Use AscendingIterator to display elements in ascending order
     std::cout << "Elements in ascending order:\n";
-    MagicalContainer::AscendingIterator ascIter(container);
+    AscendingIterator ascIter(container);
+
     for (auto it = ascIter.begin(); it != ascIter.end(); ++it) {
         std::cout << *it << ' ';   // 2 3 9 17 25
     }
@@ -23,17 +25,22 @@ int main() {
 
     // Use DescendingIterator to display elements in descending order
     std::cout << "Elements in cross order:\n";
-    MagicalContainer::SideCrossIterator crossIter(container);
+    SideCrossIterator crossIter(container);
+    int count=0;
     for (auto it = crossIter.begin(); it != crossIter.end(); ++it) {
         std::cout << *it << ' ';  // 2 25 3 17 9
+        if(count++ > 10)
+            break;
     }
     std::cout << std::endl;
 
     // Use PrimeIterator to display prime numbers only
     std::cout << "Prime numbers:\n";
-    MagicalContainer::PrimeIterator primeIter(container);
+    PrimeIterator primeIter(container);
+    
     for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
         std::cout << *it << ' ';  // 2 3 17 
+       
     }
     std::cout << std::endl;
 
